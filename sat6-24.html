@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6th Grade Practice Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        .quiz-container {
+            background-color: #fff;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .question h3 {
+            margin-bottom: 10px;
+            color: #34495e;
+        }
+        .options {
+            list-style-type: none;
+            padding: 0;
+        }
+        .options li {
+            margin-bottom: 10px;
+        }
+        label {
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 4px;
+            display: block;
+        }
+        label:hover {
+            background-color: #eaf2f8;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="quiz-container">
+    <h1>Practice Quiz</h1>
+    <p>Read each question carefully and select the best answer.</p>
+
+    <form id="quizForm">
+        <div class="question">
+            <h3>1. Reading: Read the sentence. "The cat leaped nimbly over the tall fence, landing softly on the grass without making a sound." What does the word "nimbly" mean in this sentence?</h3>
+            <ul class="options">
+                <li><label><input type="radio" name="q1" value="A"> A) Clumsily and heavily</label></li>
+                <li><label><input type="radio" name="q1" value="B"> B) Quickly and lightly</label></li>
+                <li><label><input type="radio" name="q1" value="C"> C) Loudly and angrily</label></li>
+                <li><label><input type="radio" name="q1" value="D"> D) Slowly and carefully</label></li>
+            </ul>
+        </div>
+
+        <hr>
+
+        <div class="question">
+            <h3>2. Math: Sarah has 3 boxes of apples. Each box contains 12 apples. If she gives 5 apples to her best friend, how many apples does Sarah have left?</h3>
+            <ul class="options">
+                <li><label><input type="radio" name="q2" value="A"> A) 10</label></li>
+                <li><label><input type="radio" name="q2" value="B"> B) 31</label></li>
+                <li><label><input type="radio" name="q2" value="C"> C) 36</label></li>
+                <li><label><input type="radio" name="q2" value="D"> D) 41</label></li>
+            </ul>
+        </div>
+
+        <hr>
+
+        <div class="question">
+            <h3>3. Writing: Which of the following sentences is written correctly?</h3>
+            <ul class="options">
+                <li><label><input type="radio" name="q3" value="A"> A) The dog chases it's tail in circles.</label></li>
+                <li><label><input type="radio" name="q3" value="B"> B) The dogs chases its tail in circles.</label></li>
+                <li><label><input type="radio" name="q3" value="C"> C) The dog chases its tail in circles.</label></li>
+                <li><label><input type="radio" name="q3" value="D"> D) The dog chase its tail in circles.</label></li>
+            </ul>
+        </div>
+
+        <hr>
+
+        <div class="question">
+            <h3>4. Math: What is the perimeter of a rectangle that is 8 inches long and 4 inches wide?</h3>
+            <ul class="options">
+                <li><label><input type="radio" name="q4" value="A"> A) 12 inches</label></li>
+                <li><label><input type="radio" name="q4" value="B"> B) 24 inches</label></li>
+                <li><label><input type="radio" name="q4" value="C"> C) 32 inches</label></li>
+                <li><label><input type="radio" name="q4" value="D"> D) 64 inches</label></li>
+            </ul>
+        </div>
+
+        <button type="button" onclick="submitQuiz()">Submit Answers</button>
+    </form>
+
+    <div id="result"></div>
+</div>
+
+<script>
+    function submitQuiz() {
+        // Correct answers
+        const answers = {
+            q1: "B",
+            q2: "B",
+            q3: "C",
+            q4: "B"
+        };
+
+        let score = 0;
+        let totalQuestions = Object.keys(answers).length;
+        let form = document.getElementById("quizForm");
+        let formData = new FormData(form);
+
+        // Check answers
+        for (let [question, correctAnswer] of Object.entries(answers)) {
+            if (formData.get(question) === correctAnswer) {
+                score++;
+            }
+        }
+
+        // Display results
+        let resultDiv = document.getElementById("result");
+        resultDiv.innerHTML = `You scored ${score} out of ${totalQuestions}!`;
+        
+        if (score === totalQuestions) {
+            resultDiv.style.color = "green";
+            resultDiv.innerHTML += " Great job!";
+        } else if (score >= totalQuestions / 2) {
+            resultDiv.style.color = "orange";
+            resultDiv.innerHTML += " Good effort, keep practicing!";
+        } else {
+            resultDiv.style.color = "red";
+            resultDiv.innerHTML += " Review the questions and try again.";
+        }
+    }
+</script>
+
+</body>
+</html>
